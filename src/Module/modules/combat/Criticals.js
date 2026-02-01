@@ -15,14 +15,12 @@ export default class Criticals extends Module {
     onPacket(pkt) {
         if (pkt.name == "SPacketUseEntity" && pkt.data.action == "ATTACK") {
             for (const offset of this.CRIT_OFFSETS) {
-                let pos = packetUtils.createPacket("Vector3", packetUtils.fields.Vector3, {
-                    x: hooks.game.player.pos.x,
-                    y: hooks.game.player.pos.y + offset,
-                    z: hooks.game.player.pos.z
-                });
-
                 packetUtils.sendPacket(packetUtils.createPacket("SPacketPlayerPosLook", packetUtils.fields.SPacketPlayerPosLook, {
-                    pos: pos,
+                    pos: new packetUtils.Vector3({
+                        x: hooks.game.player.pos.x,
+                        y: hooks.game.player.pos.y + offset,
+                        z: hooks.game.player.pos.z
+                    }),
                     onGround: false
                 }));
             }
