@@ -1,4 +1,5 @@
 import esbuild from "esbuild";
+import fs from "fs";
 
 const meta = `// ==UserScript==
 // @name         Ballcrack
@@ -9,7 +10,7 @@ const meta = `// ==UserScript==
 // @match        *://miniblox.io/*
 // @grant        none
 // ==/UserScript==
-`
+`;
 
 const common = {
   entryPoints: ["src/index.js"],
@@ -31,6 +32,21 @@ async function run(watch = false) {
     banner: { js: meta },
     outfile: "dist/ballcrack.user.js"
   });
+
+  const bookmarklet = await esbuild.build({
+    ...common,
+    format: "iife",
+    platform: "browser",
+    write: false
+  });
+
+  const code = bookmarklet.outputFiles[0].text;
+
+  const wrapped =
+    "javascript:" +
+    encodeURIComponent(`(()=>{${code}})()`);
+
+  fs.writeFileSync("dist/bookmarklet.txt", wrapped);
 
   if (watch) {
     await normal.watch();
