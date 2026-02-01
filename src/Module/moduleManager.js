@@ -1,5 +1,6 @@
 import events from "../events";
 import Killaura from "./modules/combat/Killaura";
+import ChatBypass from "./modules/misc/ChatBypass";
 import NoFall from "./modules/misc/NoFall";
 import SelfHarm from "./modules/misc/SelfHarm";
 import Airjump from "./modules/movement/Airjump";
@@ -65,7 +66,8 @@ export default {
 
             // misc
             SelfHarm,
-            NoFall
+            NoFall,
+            ChatBypass
         );
 
         events.on("render", () => {
@@ -88,6 +90,14 @@ export default {
             for (let name in this.modules) {
                 if (this.modules[name].isEnabled) {
                     this.modules[name].afterTick();
+                }
+            }
+        });
+
+        events.on("packet", (data) => {
+            for (let name in this.modules) {
+                if (this.modules[name].isEnabled) {
+                    this.modules[name].onPacket(data);
                 }
             }
         });

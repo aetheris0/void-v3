@@ -30,6 +30,7 @@ export default class Module {
     onGameEntered() {}
     onGameExited() {}
     onNoaTick () {}
+    onPacket(data) {}
 
     enable () {
         this.isEnabled = true;

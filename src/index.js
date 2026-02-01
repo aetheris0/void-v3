@@ -6,6 +6,7 @@ import clickGUICSS from "./module/modules/visual/styles/clickgui.css";
 import events from "./events";
 import interactionUtils from "./utils/interactionUtils";
 import blockUtils from "./utils/blockUtils";
+import packetUtils from "./utils/packetUtils";
 
 function loadCSS (css) {
     const style = document.createElement('style');
@@ -29,6 +30,7 @@ loadCSS(clickGUICSS);
 
 moduleManager.init();
 hooks.hookOnTick();
+packetUtils.init();
 
 document.addEventListener("keydown", (e) => {
     events.emit("keydown", e.code);
@@ -41,5 +43,5 @@ setInterval(() => {
 let debug = true;
 
 if (debug) {
-    window.ballcrack = { hooks, shadowWrapper, moduleManager, interactionUtils, blockUtils }
+    window.ballcrack = { hooks, shadowWrapper, moduleManager, interactionUtils, blockUtils, packetUtils }
 }
