@@ -3,6 +3,7 @@ import ModuleSettings from "./ModuleSettings.js";
 
 export default class Panel {
     constructor(title, position = { top: "200px", left: "200px" }) {
+        this.title = title;
         this.panel = document.createElement("div");
         this.panel.className = "gui-panel";
         this.panel.style.top = position.top;
@@ -14,7 +15,9 @@ export default class Panel {
         this.panel.appendChild(this.header);
         
         shadowWrapper.wrapper.appendChild(this.panel);
+
         this.buttons = [];
+        this.settings = [];
         this.setupDragHandling();
     }
 
@@ -46,6 +49,7 @@ export default class Panel {
         btn.textContent = module.name;
 
         const settings = new ModuleSettings(module, buttonContainer);
+        this.settings.push(settings);
 
         btn.addEventListener("mousedown", (event) => {
             if (event.button === 0) {
@@ -71,11 +75,7 @@ export default class Panel {
                 event.preventDefault();
                 event.stopPropagation();
                 event.stopImmediatePropagation();
-                if (event.key === "Escape") {
-                    module.keybind = null;
-                } else {
-                    module.keybind = String(event.code);
-                }
+                module.keybind = event.key === "Escape" ? null : String(event.code);
                 module.waitingForBind = false;
             }
         });
@@ -84,6 +84,14 @@ export default class Panel {
         this.panel.appendChild(buttonContainer);
         this.buttons.push(btn);
         return btn;
+    }
+
+    refreshModuleSettings() {
+        for (const settings of this.settings) {
+            if (typeof settings.refresh === "function") {
+                settings.refresh();
+            }
+        }
     }
 
     show() {

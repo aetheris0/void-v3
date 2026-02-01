@@ -2,6 +2,7 @@ import events from "../events";
 import Killaura from "./modules/combat/Killaura";
 import ChatBypass from "./modules/misc/ChatBypass";
 import NoFall from "./modules/misc/NoFall";
+import PacketLogger from "./modules/misc/PacketLogger";
 import SelfHarm from "./modules/misc/SelfHarm";
 import Airjump from "./modules/movement/Airjump";
 import HighJump from "./modules/movement/HighJump";
@@ -67,7 +68,8 @@ export default {
             // misc
             SelfHarm,
             NoFall,
-            ChatBypass
+            ChatBypass,
+            PacketLogger
         );
 
         events.on("render", () => {
