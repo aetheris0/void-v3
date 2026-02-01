@@ -1,9 +1,11 @@
 import events from "../events";
+import Criticals from "./modules/combat/Criticals";
 import Killaura from "./modules/combat/Killaura";
 import ChatBypass from "./modules/misc/ChatBypass";
 import NoFall from "./modules/misc/NoFall";
 import PacketLogger from "./modules/misc/PacketLogger";
 import SelfHarm from "./modules/misc/SelfHarm";
+import ViewCmdBlockCode from "./modules/misc/ViewCmdBlockCode";
 import Airjump from "./modules/movement/Airjump";
 import HighJump from "./modules/movement/HighJump";
 import Jesus from "./modules/movement/Jesus";
@@ -64,12 +66,14 @@ export default {
 
             // combat
             Killaura,
+            Criticals,
 
             // misc
             SelfHarm,
             NoFall,
             ChatBypass,
-            PacketLogger
+            PacketLogger,
+            ViewCmdBlockCode
         );
 
         events.on("render", () => {

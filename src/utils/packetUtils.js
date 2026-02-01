@@ -2,7 +2,7 @@ import events from "../events";
 import hooks from "../hooks";
 import blockUtils from "./blockUtils";
 
-export default {
+let packetUtils = {
     init () {
         let SPacketUpdateInventory = hooks.game.player.inventory.sendInventoryToServer();
         this.$Message2 = SPacketUpdateInventory.constructor.__proto__;
@@ -18,12 +18,13 @@ export default {
                 name: packetName,
                 data: retVal
             });
-            
+
             return retVal;
         }
 
-        this.PBFloatVector3 = this.createPacket("PBFloatVector3", this.fields.PBFloatVector3);
-        this.PBBlockPos = this.createPacket("PBBlockPos", this.fields.PBBlockPos);
+        this.PBFloatVector3 = this.createPacketClass("PBFloatVector3", this.fields.PBFloatVector3);
+        this.PBBlockPos = this.createPacketClass("PBBlockPos", this.fields.PBBlockPos);
+        this.Vector3 = this.createPacketClass("Vector3", this.fields.Vector3);
 
         this.PBAction = {
             "0": "START_DESTROY_BLOCK",
@@ -101,7 +102,7 @@ export default {
         }]);
     },
 
-    createPacket (name, fields = [], data = {}) {
+    createPacketClass (name, fields = []) {
         let $Message2 = this.$Message2;
         let proto2 = this.proto2;
 
@@ -129,7 +130,12 @@ export default {
         packetClass.runtime = proto2;
         packetClass.fields = proto2.util.newFieldList(() => fields);
 
-        let packet = new packetClass();
+        return packetClass;
+    },
+
+    createPacket (name, fields = [], data = {}) {
+        let packetClass = this.createPacketClass(name, fields);
+        let packet = new packetClass(data);
 
         for (let key in data) {
             packet[key] = data[key];
@@ -196,6 +202,51 @@ export default {
             name: "z",
             kind: "scalar",
             T: 17
-        }]
+        }],
+        "Vector3": [{
+            no: 1,
+            name: "x",
+            kind: "scalar",
+            T: 2
+        }, {
+            no: 2,
+            name: "y",
+            kind: "scalar",
+            T: 2
+        }, {
+            no: 3,
+            name: "z",
+            kind: "scalar",
+            T: 2
+        }],
+
+        get SPacketPlayerPosLook () {
+            return [{
+                no: 1,
+                name: "pos",
+                kind: "message",
+                T: packetUtils.Vector3,
+                opt: !0
+            }, {
+                no: 2,
+                name: "yaw",
+                kind: "scalar",
+                T: 2,
+                opt: !0
+            }, {
+                no: 3,
+                name: "pitch",
+                kind: "scalar",
+                T: 2,
+                opt: !0
+            }, {
+                no: 4,
+                name: "onGround",
+                kind: "scalar",
+                T: 8
+            }]
+        }
     }
 }
+
+export default packetUtils;
