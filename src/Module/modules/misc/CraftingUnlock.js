@@ -1,3 +1,4 @@
+import hooks from "../../../hooks";
 import Module from "../../Module";
 
 export default class CraftingUnlock extends Module {
@@ -48,7 +49,7 @@ export default class CraftingUnlock extends Module {
         button.style.width = "100%";
 
         button.addEventListener("click", () => {
-            ballcrack.hooks.game.player.displayGui({
+            hooks.game.player.displayGui({
                 getGuiID() {
                     return "workbench";
                 }

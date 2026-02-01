@@ -219,6 +219,18 @@ let packetUtils = {
             kind: "scalar",
             T: 2
         }],
+        
+        "SPacketRequestChunk":[{
+            no: 1,
+            name: "x",
+            kind: "scalar",
+            T: 5
+        }, {
+            no: 2,
+            name: "z",
+            kind: "scalar",
+            T: 5
+        }],
 
         get SPacketPlayerPosLook () {
             return [{

@@ -20,6 +20,7 @@ import Chams from "./modules/visual/Chams";
 import ClickGUI from "./modules/visual/ClickGUI";
 
 import Watermark from "./modules/visual/Watermark";
+import Crasher from "./modules/world/Crasher";
 
 export default {
     modules: {},
@@ -75,7 +76,10 @@ export default {
             ChatBypass,
             PacketLogger,
             ViewCmdBlockCode,
-            CraftingUnlock
+            CraftingUnlock,
+
+            // world
+            Crasher
         );
 
         events.on("render", () => {
