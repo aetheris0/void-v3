@@ -41,12 +41,13 @@ export default class Killaura extends Module {
         if (itemType !== "ItemSword") autoBlock = false;
 
         hooks.game.world.loadedEntityList.forEach(ent => {
-            let dist = mathUtils.distanceBetween(ent.pos, hooks.game.player.pos);
+            const dist = mathUtils.distanceBetween(ent.pos, hooks.game.player.pos);
+            const box = ent.getEntityBoundingBox();
             if (hooks.game.player.id !== ent.id && dist < 14 && !this.ignoreEntities.includes(ent.constructor.name)) {
                 attacked = true;
 
                 if (autoBlock) this.unblock();
-                hooks.game.controller.objectMouseOver.hitVec = ent.pos.clone();
+                hooks.game.controller.objectMouseOver.hitVec = hooks.game.player.getEyePos().clone().clamp(box.min, box.max);
                 hooks.game.controller.attackEntity(ent);
                 if (autoBlock) this.block();
 

@@ -28,20 +28,28 @@ inter300.load().then((loadedFace) => document.fonts.add(loadedFace));
 
 loadCSS(clickGUICSS);
 
-moduleManager.init();
-hooks.hookOnTick();
-packetUtils.init();
+function init () {
+    moduleManager.init();
+    hooks.hookOnTick();
+    packetUtils.init();
 
-document.addEventListener("keydown", (e) => {
-    events.emit("keydown", e.code);
-});
+    document.addEventListener("keydown", (e) => {
+        events.emit("keydown", e.code);
+    });
 
-setInterval(() => {
-    events.emit("render");
-}, (1000 / 60));
+    setInterval(() => {
+        events.emit("render");
+    }, (1000 / 60));
 
-let debug = true;
+    let debug = true;
 
-if (debug) {
-    window.ballcrack = { hooks, shadowWrapper, moduleManager, interactionUtils, blockUtils, packetUtils }
+    if (debug) {
+        window.ballcrack = { hooks, shadowWrapper, moduleManager, interactionUtils, blockUtils, packetUtils }
+    }
+}
+
+if (document.readyState === "complete" || document.readyState === "interactive") {
+    init();
+} else {
+    document.addEventListener("DOMContentLoaded", init);
 }
