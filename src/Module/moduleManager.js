@@ -2,6 +2,7 @@ import events from "../events";
 import Criticals from "./modules/combat/Criticals";
 import Killaura from "./modules/combat/Killaura";
 import ChatBypass from "./modules/misc/ChatBypass";
+import CraftingUnlock from "./modules/misc/CraftingUnlock";
 import NoFall from "./modules/misc/NoFall";
 import PacketLogger from "./modules/misc/PacketLogger";
 import SelfHarm from "./modules/misc/SelfHarm";
@@ -73,7 +74,8 @@ export default {
             NoFall,
             ChatBypass,
             PacketLogger,
-            ViewCmdBlockCode
+            ViewCmdBlockCode,
+            CraftingUnlock
         );
 
         events.on("render", () => {

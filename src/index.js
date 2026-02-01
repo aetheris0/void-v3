@@ -7,6 +7,7 @@ import events from "./events";
 import interactionUtils from "./utils/interactionUtils";
 import blockUtils from "./utils/blockUtils";
 import packetUtils from "./utils/packetUtils";
+import commandManager from "./Command/commandManager";
 
 function loadCSS (css) {
     const style = document.createElement('style');
@@ -32,6 +33,7 @@ function init () {
     moduleManager.init();
     hooks.hookOnTick();
     packetUtils.init();
+    commandManager.init();
 
     document.addEventListener("keydown", (e) => {
         events.emit("keydown", e.code);
@@ -44,7 +46,7 @@ function init () {
     let debug = true;
 
     if (debug) {
-        window.ballcrack = { hooks, shadowWrapper, moduleManager, interactionUtils, blockUtils, packetUtils }
+        window.ballcrack = { hooks, shadowWrapper, moduleManager, interactionUtils, blockUtils, packetUtils, commandManager }
     }
 }
 
