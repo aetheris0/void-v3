@@ -2,6 +2,7 @@ import events from "../events";
 import hooks from "../hooks";
 import Give from "./commands/Give";
 import Help from "./commands/Help";
+import NBT from "./commands/NBT";
 
 export default {
     commands: {},
@@ -41,7 +42,8 @@ export default {
 
         this.registerCommands(
             Help,
-            Give
+            Give,
+            NBT
         );
     }
 }
