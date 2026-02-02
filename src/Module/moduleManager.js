@@ -22,6 +22,7 @@ import ClickGUI from "./modules/visual/ClickGUI";
 
 import Watermark from "./modules/visual/Watermark";
 import Crasher from "./modules/world/Crasher";
+import OwnerSpoof from "./modules/world/OwnerSpoof";
 
 export default {
     modules: {},
@@ -81,7 +82,8 @@ export default {
             FastBreak,
 
             // world
-            Crasher
+            Crasher,
+            OwnerSpoof
         );
 
         events.on("render", () => {

@@ -8,6 +8,8 @@ import interactionUtils from "./utils/interactionUtils";
 import blockUtils from "./utils/blockUtils";
 import packetUtils from "./utils/packetUtils";
 import commandManager from "./Command/commandManager";
+import reactUtils from "./utils/reactUtils";
+import mobxUtils from "./utils/mobxUtils";
 
 function loadCSS (css) {
     const style = document.createElement('style');
@@ -47,7 +49,10 @@ function init () {
     let debug = true;
 
     if (debug) {
-        window.ballcrack = { hooks, shadowWrapper, moduleManager, interactionUtils, blockUtils, packetUtils, commandManager }
+        window.ballcrack = { 
+            hooks, shadowWrapper, moduleManager, interactionUtils,
+            blockUtils, packetUtils, commandManager, reactUtils, mobxUtils
+        }
     }
 }
 

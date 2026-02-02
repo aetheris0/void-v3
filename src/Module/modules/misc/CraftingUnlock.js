@@ -1,12 +1,16 @@
 import hooks from "../../../hooks";
+import mobxUtils from "../../../utils/mobxUtils";
 import reactUtils from "../../../utils/reactUtils";
 import Module from "../../Module";
 
 export default class CraftingUnlock extends Module {
     constructor() {
-        super("CraftingUnlock", "Misc");
+        super("CraftingUnlock", "Misc", {
+            "Force Enable": "true"
+        });
         this.observer = null;
         this._recipes = null;
+        this._serverCategory = null;
     }
 
     get recipes() {
@@ -47,12 +51,31 @@ export default class CraftingUnlock extends Module {
             childList: true,
             subtree: true
         });
+
+        if (this.options["Force Enable"] === "true") {
+            let context = this;
+            this._serverCategory = hooks.game.serverInfo.serverCategory;
+            mobxUtils.defineMobxProp(hooks.game.serverInfo, "serverCategory", function () {
+                let stack = Error().stack;
+                if (stack.includes("useObserver")) {
+                    return "bob";
+                } else {
+                    return context._serverCategory;
+                }
+            }, function (v) {
+                context._serverCategory = v;
+            });
+        }
     }
 
     onDisable() {
         if (this.observer) {
             this.observer.disconnect();
             this.observer = null;
+        }
+
+        if (this.options["Force Enable"] === "true" && this._serverCategory !== null) {
+            mobxUtils.setMobxProp(hooks.game.serverInfo, "serverCategory", this._serverCategory);
         }
     }
 
