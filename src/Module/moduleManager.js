@@ -3,6 +3,7 @@ import Criticals from "./modules/combat/Criticals";
 import Killaura from "./modules/combat/Killaura";
 import ChatBypass from "./modules/misc/ChatBypass";
 import CraftingUnlock from "./modules/misc/CraftingUnlock";
+import FastBreak from "./modules/misc/FastBreak";
 import NoFall from "./modules/misc/NoFall";
 import PacketLogger from "./modules/misc/PacketLogger";
 import SelfHarm from "./modules/misc/SelfHarm";
@@ -77,6 +78,7 @@ export default {
             PacketLogger,
             ViewCmdBlockCode,
             CraftingUnlock,
+            FastBreak,
 
             // world
             Crasher

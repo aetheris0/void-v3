@@ -31,6 +31,7 @@ loadCSS(clickGUICSS);
 
 function init () {
     moduleManager.init();
+    hooks.getGameScript();
     hooks.hookOnTick();
     packetUtils.init();
     commandManager.init();
