@@ -2,11 +2,12 @@ import esbuild from "esbuild";
 import fs from "fs";
 
 const meta = `// ==UserScript==
-// @name         Ballcrack
+// ==UserScript==
+// @name         Void v3 dev
 // @namespace    *://miniblox.io/*
-// @version      1.0.0
-// @author       Wang
-// @description  We do a little thugging
+// @version      3
+// @author       Ninja + forked ballcrack client
+// @description  Hi
 // @match        *://miniblox.io/*
 // @grant        none
 // ==/UserScript==
