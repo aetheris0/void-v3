@@ -57,7 +57,7 @@ async function buildBookmarklet() {
 async function run(watch = false) {
   const normal = await esbuild.context({
     ...common,
-    outfile: "dist/ballcrack.js",
+    outfile: "dist/v3.js",
     plugins: [logPlugin("normal")]
   });
 
@@ -66,7 +66,7 @@ async function run(watch = false) {
     format: "iife",
     platform: "browser",
     banner: { js: meta },
-    outfile: "dist/ballcrack.user.js",
+    outfile: "dist/v3.user.js",
     plugins: [logPlugin("user")]
   });
 
