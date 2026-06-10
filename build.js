@@ -5,7 +5,7 @@ const meta = `// ==UserScript==
 // ==UserScript==
 // @name         Void v3 dev
 // @namespace    *://miniblox.io/*
-// @version      3
+// @version      3.1
 // @author       Ninja + forked ballcrack client
 // @description  Hi
 // @match        *://miniblox.io/*
