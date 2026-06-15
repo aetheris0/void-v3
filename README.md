@@ -1,3 +1,2 @@
 # [![Typing SVG](https://readme-typing-svg.demolab.com?font=Google+Sans&pause=1000&color=6513B1&width=435&lines=Void+client+is+awesome)](https://git.io/typing-svg)
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Google+Sans&pause=100&color=462A97&width=450&lines=Void+Client+is+a+good+lightweight+client+with+tons+of;Features+such+as+killaura%2C+scaffold+and+more)](https://git.io/typing-svg)
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Google+Sans&duration=2000&pause=1000&color=6513B1&width=435&lines=Update+on+6%2F9%3A+added+notifications+%2B+ui+upgrades)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Google+Sans&pause=100&color=462A97&width=450&lines=Void+Client+is+a+good+lightweight+client+with+tons+of;Features+such+as+killaura%2C+scaffold+and+more;Update+on+6%2F9%3A+added+notifications+%2B+ui+upgrades)](https://git.io/typing-svg)
